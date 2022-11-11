@@ -1,0 +1,11 @@
+# directories
+/node_modules
+
+# hidden directories
+.vscode
+.idea
+.cache
+.eslintcache
+
+# files
+package-lock.json
