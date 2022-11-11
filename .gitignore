@@ -1,5 +1,6 @@
 # directories
 /node_modules
+/out
 
 # hidden directories
 .vscode
