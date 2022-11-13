@@ -17,20 +17,39 @@ class TestsController implements Controller{
     }
 
     /**
-     * @swagger
-     * /users:
-     *   get:
-     *     summary: Retrieve a list of JSONPlaceholder users
-     *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+    *   @swagger
+    *   /pet/findByStatus:
+    *   get:
+    *       summary: Finds pets by Status
+    *       tags:
+    *           - Tests
     */
     private getTest(request: express.Request, response: express.Response): void{
         response.send("Hello from getTest");
     }
 
+    /**
+    *   @swagger
+    *   /api/tests:
+    *       put:
+    *           summary: Put a test summary
+    *           description: Put a test description
+    *           tags:
+    *               - Tests
+    */
     private putTest(request: express.Request, response: express.Response): void{
         response.send("Hello from putTest")
     }
 
+    /**
+    *   @swagger
+    *   /api/tests:
+    *       post:
+    *           summary: Post a test summary
+    *           description: Post a test description
+    *           tags:
+    *               - Tests
+    */
     private postTest(request: Express.Request, reponse: express.Response): void{
         reponse.send("Hello from postTest");
     }
