@@ -1,16 +1,18 @@
 import express, { response } from 'express';
 import Controller from './Controller';
-import dotenv from 'dotenv';
+import getTestsRequest from '../application/Tests/Requests/GetTestsRequest';
+import putTestsCommand from '../application/Tests/Commands/PutTestsCommand';
+import postTestCommand from '../application/Tests/Commands/PostTestsCommand';
 
-class TestsController implements Controller{
+class TestsController implements Controller {
     public path = `${process.env.API_URL}tests`;
     public router = express.Router();
 
-    constructor(){
+    constructor() {
         this.intializeRoutes();
     }
 
-    private intializeRoutes(): void{
+    private intializeRoutes(): void {
         this.router.get(this.path, this.getTest);
         this.router.put(this.path, this.putTest);
         this.router.post(this.path, this.postTest);
@@ -25,8 +27,9 @@ class TestsController implements Controller{
     *           tags:
     *               - Tests
     */
-    private getTest(request: express.Request, response: express.Response): void{
-        response.send("Hello from getTest");
+    private getTest(request: express.Request, response: express.Response): void {
+        getTestsRequest(request, response);
+        response.status(200).send();
     }
 
     /**
@@ -38,8 +41,9 @@ class TestsController implements Controller{
     *           tags:
     *               - Tests
     */
-    private putTest(request: express.Request, response: express.Response): void{
-        response.send("Hello from putTest")
+    private putTest(request: express.Request, response: express.Response): void {
+        putTestsCommand(request, response);
+        response.status(200).send();
     }
 
     /**
@@ -51,8 +55,9 @@ class TestsController implements Controller{
     *           tags:
     *               - Tests
     */
-    private postTest(request: Express.Request, reponse: express.Response): void{
-        reponse.send("Hello from postTest");
+    private postTest(request: express.Request, response: express.Response): void {
+        postTestCommand(request, response);
+        response.status(200).send();
     }
 }
 

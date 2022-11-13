@@ -1,8 +1,8 @@
 import express from 'express';
 
-interface Controller{
+interface Controller {
     readonly path: string;
-    readonly  router: express.Router;
+    readonly router: express.Router;
 }
 
 export default Controller;
