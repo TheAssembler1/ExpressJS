@@ -18,7 +18,7 @@ class App {
   }
 
   private initializeSwagger(){
-    const swaggerJSDoc: any = require('swagger-jsdoc');
+  const swaggerJSDoc: any = require('swagger-jsdoc');
    const  swaggerDefinition: any = require('../swagger.json');
 
    const options = {

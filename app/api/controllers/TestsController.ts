@@ -18,11 +18,12 @@ class TestsController implements Controller{
 
     /**
     *   @swagger
-    *   /pet/findByStatus:
-    *   get:
-    *       summary: Finds pets by Status
-    *       tags:
-    *           - Tests
+    *   /api/tests:
+    *       get:
+    *           summary: Get all users in the system
+    *           description: Get a test description
+    *           tags:
+    *               - Tests
     */
     private getTest(request: express.Request, response: express.Response): void{
         response.send("Hello from getTest");
