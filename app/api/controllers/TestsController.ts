@@ -1,8 +1,9 @@
-import express, { response } from 'express';
+import express from 'express';
 import Controller from './Controller';
-import getTestsRequest from '../application/Tests/Requests/GetTestsRequest';
-import putTestsCommand from '../application/Tests/Commands/PutTestsCommand';
-import postTestCommand from '../application/Tests/Commands/PostTestsCommand';
+import getTestsRequest from '../Application/Tests/Requests/GetTestsRequest';
+import putTestsCommand from '../Application/Tests/Commands/PutTestsCommand';
+import postTestCommand from '../Application/Tests/Commands/PostTestsCommand';
+import GetTestsDto from '../Application/Dto/Tests/GetTestsDto';
 
 class TestsController implements Controller {
     public path = `${process.env.API_URL}tests`;
@@ -19,42 +20,50 @@ class TestsController implements Controller {
     }
 
     /**
-    *   @swagger
-    *   /api/tests:
-    *       get:
-    *           summary: Get all users in the system
-    *           description: Get a test description
-    *           tags:
-    *               - Tests
-    */
-    private getTest(request: express.Request, response: express.Response): void {
-        getTestsRequest(request, response);
-        response.status(200).send();
-    }
+     * @swagger
+     * {
+     *   "components": {
+     *      "schemas": {
+     *          "GetTestsDto": {
+     *          },
+     *      },
+     *   }
+     */
 
     /**
-    *   @swagger
-    *   /api/tests:
-    *       put:
-    *           summary: Put a test summary
-    *           description: Put a test description
-    *           tags:
-    *               - Tests
-    */
+     * @swagger
+     * {
+     *   "/pets": {
+     *      "get": {
+     *          "description": "Returns all pets from the system that the user has access to",
+     *          "produces": [
+     *              "application/json"
+     *          ],
+     *          "responses": {
+     *              "200": {
+     *                  "description": "A list of pets.",
+     *                  "schema": {
+     *                  "type": "array",
+     *                  "items": {
+     *                  "$ref": "#/definitions/pet"
+     *              }
+     *           }
+     *           }
+     *       }
+     *       }
+     *   }
+     *   }
+     */
+    private getTest(request: express.Request, response: express.Response): void {
+        const res: GetTestsDto = getTestsRequest(request, response);
+        response.status(200).send(res);
+    }
+
     private putTest(request: express.Request, response: express.Response): void {
         putTestsCommand(request, response);
         response.status(200).send();
     }
 
-    /**
-    *   @swagger
-    *   /api/tests:
-    *       post:
-    *           summary: Post a test summary
-    *           description: Post a test description
-    *           tags:
-    *               - Tests
-    */
     private postTest(request: express.Request, response: express.Response): void {
         postTestCommand(request, response);
         response.status(200).send();

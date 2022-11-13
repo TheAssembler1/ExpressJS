@@ -2,11 +2,11 @@
   "name": "expressjs",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "Server.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node out/server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q out/server.js\" ",
+    "start": "node out/Server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q out/Server.js\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

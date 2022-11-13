@@ -1,7 +1,7 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
-import controller from './api/controllers/Controller';
+import controller from './Api/Controllers/Controller';
 import swaggerUi from 'swagger-ui-express';
 
 class App {
@@ -23,7 +23,7 @@ class App {
 
     const options = {
       swaggerDefinition,
-      apis: ['app/api/controllers/*.ts'],
+      apis: ['App/Api/Controllers/*.ts'],
     }
 
     const swaggerSpec = swaggerJSDoc(options);

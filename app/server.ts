@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import TestsController from './api/controllers/TestsController';
-import App from './app';
+import TestsController from './Api/Controllers/TestsController';
+import App from './App';
 
 dotenv.config();
 
