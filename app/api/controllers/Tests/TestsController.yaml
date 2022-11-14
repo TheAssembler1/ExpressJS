@@ -1,0 +1,41 @@
+# TODO: ned to find why I can't rename this to something else
+definitions:
+  GetTestsDto:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    required:
+      - id
+      - name
+  PutTestsDto:
+    properties:
+      message:
+        type: string
+    required:
+      - message
+  PostTestsDto:
+    properties:
+      message:
+        type: string
+    required:
+      - message
+
+paths:
+  /api/tests:
+    get:
+      response:
+        "200":
+          schema:
+            $ref: "#/definitions/GetTestsDto"
+    put:
+      response:
+        "200":
+          schema:
+            $ref: "#/definitions/PutTestsDto"
+    post:
+      response:
+        "200":
+          schema:
+            $ref: "#/definitions/PostTestsDto"

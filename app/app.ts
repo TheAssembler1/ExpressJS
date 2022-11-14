@@ -23,7 +23,7 @@ class App {
 
     const options = {
       swaggerDefinition,
-      apis: ['App/Api/Controllers/*.ts'],
+      apis: ['App/Api/Controllers/Tests/*.yaml'],
     }
 
     const swaggerSpec = swaggerJSDoc(options);
