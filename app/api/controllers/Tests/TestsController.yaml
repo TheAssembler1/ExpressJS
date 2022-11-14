@@ -1,5 +1,5 @@
-# TODO: ned to find why I can't rename this to something else
 definitions:
+  #--GetTestsDto--
   GetTestsDto:
     properties:
       id:
@@ -9,33 +9,54 @@ definitions:
     required:
       - id
       - name
+  #--PutTestsDto--
   PutTestsDto:
     properties:
       message:
         type: string
     required:
       - message
+  #--PostTestsDto--
   PostTestsDto:
     properties:
       message:
         type: string
     required:
       - message
+  #--ErrorDto--
+  ErrorDto:
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+    required:
+      - status:
+      - message
 
 paths:
   /api/tests:
+    #--get /api/tests--
     get:
       response:
         "200":
           schema:
             $ref: "#/definitions/GetTestsDto"
+      tags:
+        - Tests Controller
+    #--put /api/tests--
     put:
       response:
         "200":
           schema:
             $ref: "#/definitions/PutTestsDto"
+      tags:
+        - Tests Controller
+    #--post /api/tests--
     post:
       response:
         "200":
           schema:
             $ref: "#/definitions/PostTestsDto"
+      tags:
+        - Tests Controller
