@@ -3,18 +3,25 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import controller from './Api/Controllers/Controller';
 import swaggerUi from 'swagger-ui-express';
+import mongoose from 'mongoose';
 
 class App {
   public app: express.Application;
-  public port: number;
 
-  constructor(controllers: controller[], port: number) {
+  constructor(controllers: controller[]) {
     this.app = express();
-    this.port = port;
 
-    this.initializeSwagger();
+    this.initializeMongoose();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
+    this.initializeSwagger();
+  }
+
+  private initializeMongoose() {
+    mongoose.connect(String(process.env.DB_URL));
+    const mongooseConnection = mongoose.connection;
+
+    mongooseConnection.on('error', console.error.bind(console, 'MongoDB connection error:'));
   }
 
   private initializeSwagger(): void {
@@ -46,8 +53,8 @@ class App {
   }
 
   public listen(): void {
-    this.app.listen(this.port, () => {
-      console.log(`App listening on the port ${this.port}`);
+    this.app.listen(Number(process.env.PORT), () => {
+      console.log(`App listening on the port ${Number(process.env.PORT)}`);
     });
   }
 }
