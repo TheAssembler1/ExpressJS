@@ -3,21 +3,27 @@ definitions:
   GetTestsDto:
     properties:
       id:
-        type: integer
-      name:
         type: string
-    required:
-      - id
-      - name
-  #--PutTestsDto--
-  PutTestsDto:
-    properties:
       message:
         type: string
     required:
+      - id
       - message
+    example:
+      id: 1
+      message: "GetTestsDto"
   #--PostTestsDto--
   PostTestsDto:
+    properties:
+      id:
+        type: string
+      message:
+        type: string
+    required:
+      - id
+      - message
+  #--PutTestsDto--
+  PutTestsDto:
     properties:
       message:
         type: string
@@ -31,32 +37,88 @@ definitions:
       message:
         type: string
     required:
-      - status:
+      - status
       - message
 
+responses:
+  GeneralError:
+    description: General Error
+    $ref: "#/definitions/ErrorDto"
+  NotFound:
+    description: Not Found
+  Ok:
+    description: Ok
+
 paths:
-  /api/tests:
-    #--get /api/tests--
+  /api/tests/{Id}:
+    #--get /api/tests/:id--
     get:
-      response:
+      description: Returns Test based on Id
+      summary: Get Test by Id
+      produces:
+        - application/json
+      parameters:
+        - name: Id
+          in: path
+          description: Get Id of Test
+          required: true
+          type: string
+      responses:
         "200":
           schema:
+            type: object
             $ref: "#/definitions/GetTestsDto"
-      tags:
-        - Tests Controller
-    #--put /api/tests--
+        "404":
+          $ref: "#/responses/NotFound"
+        default:
+          schema:
+            description: Error
+            $ref: "#/responses/GeneralError"
+    #--put /api/tests/:id--
     put:
-      response:
-        "200":
+      description: Updates Test based on id
+      summary: Update Test by id
+      produces:
+        - application/json
+      parameters:
+        - name: Id
+          in: path
+          description: Id of Test
+          required: true
+          type: string
+        - name: Test
+          in: body
+          description: From body PostTestsDto
+          required: true
           schema:
             $ref: "#/definitions/PutTestsDto"
-      tags:
-        - Tests Controller
+      responses:
+        "200":
+          $ref: "#/responses/Ok"
+        "404":
+          $ref: "#/responses/NotFound"
+        default:
+          schema:
+            description: Error
+            $ref: "#/responses/GeneralError"
+  /api/tests:
     #--post /api/tests--
     post:
-      response:
-        "200":
+      description: Create Test base on message
+      summary: Create Test with message
+      produces:
+        - application/json
+      parameters:
+        - name: Test
+          in: body
+          description: From body PostTestsDto
+          required: true
           schema:
             $ref: "#/definitions/PostTestsDto"
-      tags:
-        - Tests Controller
+      responses:
+        "200":
+          $ref: "#/responses/Ok"
+        default:
+          schema:
+            description: Error
+            $ref: "#/responses/GeneralError"

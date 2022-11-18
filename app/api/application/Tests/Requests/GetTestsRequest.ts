@@ -3,7 +3,7 @@ import GetTestsDto from '../../Dto/Tests/GetTestsDto';
 
 function getTestsRequest(request: express.Request, response: express.Response): GetTestsDto {
     const res: GetTestsDto = {
-        id: 1,
+        id: request.params.id,
         message: "test1"
     };
 

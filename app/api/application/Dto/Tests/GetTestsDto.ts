@@ -1,5 +1,5 @@
 interface GetTestsDto {
-    id: number,
+    id: string,
     message: string
 }
 
