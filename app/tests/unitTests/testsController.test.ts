@@ -1,17 +1,24 @@
 import request from 'supertest';
-import app from '../../app';
+import App from '../../app';
 import dotenv from 'dotenv';
+import express from 'express';
+
 
 describe('TestsController', () => {
-    test('get api/tests/', async () => {
-        //NOTE: configurint environment and creating test
+    let app: express.Application;
+
+    beforeAll(() => {
         dotenv.config();
-        const application = new app(true);
 
-        const response = await request(application.app).get('/api/tests/1');
+        const application: any = new App(true);
+        app = application.app;
+    });
 
-        console.log(JSON.stringify(response));
+    test('get api/tests/', async () => {
+        const response = await request(app).get('/api/tests/1');
 
         expect(response.statusCode).toBe(200);
+        expect(response.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(JSON.parse(response.text).id).toEqual('1');
     });
 });
