@@ -1,20 +1,28 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
-import controller from './api/controllers/controller';
 import swaggerUi from 'swagger-ui-express';
 import mongoose from 'mongoose';
+import controller from './api/controllers/controller';
+import testsController from './api/controllers/tests/testsController';
 
 class App {
   public app: express.Application;
+  // NOTE:: this is a list of all controllers
+  private controllerList: controller[] = [
+    new testsController(),
+  ];
 
-  constructor(controllers: controller[]) {
+  // NOTE: Seperate the core creation of the app for testing
+  public constructor(isTestable: boolean) {
     this.app = express();
-
-    this.initializeMongoose();
     this.initializeMiddlewares();
-    this.initializeControllers(controllers);
-    this.initializeSwagger();
+    this.initializeControllers();
+
+    if (!isTestable) {
+      this.initializeMongoose();
+      this.initializeSwagger();
+    }
   }
 
   private initializeMongoose() {
@@ -46,8 +54,8 @@ class App {
     this.app.use(bodyParser.json());
   }
 
-  private initializeControllers(controllers: controller[]): void {
-    controllers.forEach((controller: controller) => {
+  private initializeControllers(): void {
+    this.controllerList.forEach((controller: controller) => {
       this.app.use('/', controller.router);
     });
   }
