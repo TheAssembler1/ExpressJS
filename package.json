@@ -2,12 +2,12 @@
   "name": "expressjs",
   "version": "1.0.0",
   "description": "",
-  "main": "Server.js",
+  "main": "server.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node out/Server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q out/Server.js\" ",
-    "test": "jest --verbose ./Out/Tests"
+    "start": "node out/server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q out/server.js\" ",
+    "test": "jest --verbose ./out/tests"
   },
   "keywords": [],
   "author": "",

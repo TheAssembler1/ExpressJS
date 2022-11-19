@@ -1,9 +1,9 @@
 import express from 'express';
-import Controller from '../Controller';
-import getTestsRequest from '../../Application/Tests/Requests/GetTestsRequest';
-import putTestsCommand from '../../Application/Tests/Commands/PutTestsCommand';
-import postTestCommand from '../../Application/Tests/Commands/PostTestsCommand';
-import GetTestsDto from '../../Application/Dto/Tests/GetTestsDto';
+import Controller from '../controller';
+import getTestsRequest from '../../../application/tests/requests/getTestsRequest';
+import putTestsCommand from '../../../application/tests/commands/putTestsCommand';
+import postTestCommand from '../../../application/tests/commands/postTestsCommand';
+import GetTestsDto from '../../../application/dto/tests/getTestsDto';
 
 class TestsController implements Controller {
     public path = `${process.env.API_URL}tests`;

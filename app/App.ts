@@ -1,7 +1,7 @@
 
 import express from 'express';
 import bodyParser from 'body-parser';
-import controller from './Api/Controllers/Controller';
+import controller from './api/controllers/controller';
 import swaggerUi from 'swagger-ui-express';
 import mongoose from 'mongoose';
 
@@ -30,7 +30,7 @@ class App {
 
     const options = {
       swaggerDefinition,
-      apis: ['App/Api/Controllers/Tests/*.yaml'],
+      apis: ['app/api/controllers/tests/*.yaml'],
     }
 
     const swaggerSpec = swaggerJSDoc(options);
@@ -54,7 +54,7 @@ class App {
 
   public listen(): void {
     this.app.listen(Number(process.env.PORT), () => {
-      console.log(`App listening on the port ${Number(process.env.PORT)}`);
+      console.log(`App listening at ${String(process.env.APP_URL)}:${Number(process.env.PORT)}`);
     });
   }
 }
