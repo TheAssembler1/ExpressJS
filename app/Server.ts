@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import App from './app';
 import app from './app';
 
 dotenv.config();
