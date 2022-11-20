@@ -18,5 +18,6 @@ jobs:
           ls ${{ github.workspace }}
       - run: cd ${{ github.workspace }}
       - run: npm install 
+      - run: pwd
       - run: grunt
       - run: echo "🍏 This job's status is ${{ job.status }}."
