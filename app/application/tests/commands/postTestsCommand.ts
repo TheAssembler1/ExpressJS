@@ -2,21 +2,16 @@ import express from 'express';
 import PostTestsDto from '../../dto/tests/postTestsDto';
 import testsModel from '../../../persistance/testsSchema';
 
-function postTestCommand(request: express.Request, response: express.Response): void {
+function postTestCommand(request: express.Request, response: express.Response): string {
     const requestBody: PostTestsDto = request.body;
     const model = new testsModel(requestBody);
+    const modelId = '';
 
-    const err = model.save(function (err) {
-        if (err){
-            console.error(err);
-        }
-
-        console.log('was saved');
+    model.save(function (err) {
+        (err) ? console.error(err) : console.log('NOTE: saved');
     });
 
-    console.log(err);
-
-    console.log(requestBody);
+    return model.id || '';
 }
 
 export default postTestCommand;

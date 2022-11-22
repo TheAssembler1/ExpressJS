@@ -14,8 +14,6 @@ class TestsController implements Controller {
     }
 
     private intializeRoutes(): void {
-        console.log('test');
-
         this.router.get(`${this.path}/:id`, this.getTest);
         this.router.put(`${this.path}/:id`, this.putTest);
         this.router.post(this.path, this.postTest);
@@ -32,8 +30,8 @@ class TestsController implements Controller {
     }
 
     private postTest(request: express.Request, response: express.Response): void {
-        postTestCommand(request, response);
-        response.status(200).send();
+        const id: string  = postTestCommand(request, response);
+        response.status(200).send(id);
     }
 }
 
