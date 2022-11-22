@@ -1,6 +1,6 @@
 import express from 'express';
-import PostTestsDto from '../../dto/tests/postTestsDto';
-import testsModel from '../../../persistance/testsSchema';
+import PostTestsDto from '../../../dto/tests/postTestsDto';
+import testsModel from '../../../../persistance/testsSchema';
 
 function postTestCommand(request: express.Request, response: express.Response): string {
     const requestBody: PostTestsDto = request.body;
@@ -8,7 +8,9 @@ function postTestCommand(request: express.Request, response: express.Response): 
     const modelId = '';
 
     model.save(function (err) {
-        (err) ? console.error(err) : console.log('NOTE: saved');
+        if(err){
+            console.error(err);
+        }
     });
 
     return model.id || '';

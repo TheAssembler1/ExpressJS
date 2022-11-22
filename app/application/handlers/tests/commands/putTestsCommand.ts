@@ -1,5 +1,5 @@
 import express from 'express';
-import PutTestsDto from '../../dto/tests/putTestsDto';
+import PutTestsDto from '../../../dto/tests/putTestsDto';
 
 function putTestsCommand(request: express.Request, response: express.Response): void {
     const requestBody: PutTestsDto = request.body;

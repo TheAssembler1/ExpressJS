@@ -98,6 +98,27 @@ paths:
           schema:
             description: Error
             $ref: "#/responses/GeneralError"
+    #--put /api/tests/:id--
+    delete:
+      description: Deletes Test based on id
+      summary: Deletes Test by id
+      produces:
+        - application/json
+      parameters:
+        - name: Id
+          in: path
+          description: Id of Test
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Ok
+        "404":
+          $ref: "#/responses/NotFound"
+        default:
+          schema:
+            description: Error
+            $ref: "#/responses/GeneralError"
   /api/tests:
     #--post /api/tests--
     post:

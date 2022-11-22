@@ -1,6 +1,7 @@
 interface GetTestsDto {
-    id: string,
+    _id: any,
     message: string
+    __v: number
 }
 
 export default GetTestsDto;
