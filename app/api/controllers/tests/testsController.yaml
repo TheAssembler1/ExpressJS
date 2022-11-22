@@ -15,12 +15,9 @@ definitions:
   #--PostTestsDto--
   PostTestsDto:
     properties:
-      id:
-        type: string
       message:
         type: string
     required:
-      - id
       - message
   #--PutTestsDto--
   PutTestsDto:
