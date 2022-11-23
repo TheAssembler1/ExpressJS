@@ -21,24 +21,23 @@ class TestsController implements Controller {
         this.router.post(this.path, this.postTest);
     }
 
-    private getTest(request: express.Request, response: express.Response): void {
-        getTestsRequest(request, response)
-            .then((res) => response.status(200).send(res))
-            .catch(err => console.error(err));
+    private async getTest(request: express.Request, response: express.Response): Promise<void> {
+        const result = await getTestsRequest(request, response);
+        response.status(200).send(result);
     }
 
-    private putTest(request: express.Request, response: express.Response): void {
-        putTestsCommand(request, response);
+    private async putTest(request: express.Request, response: express.Response): Promise<void> {
+        await putTestsCommand(request, response);
         response.status(200).send();
     }
 
-    private deleteTest(request: express.Request, response: express.Response): void {
-        deleteTestCommand(request, response);
+    private async deleteTest(request: express.Request, response: express.Response): Promise<void> {
+        await deleteTestCommand(request, response);
         response.status(200).send();
     }
 
-    private postTest(request: express.Request, response: express.Response): void {
-        const id: string  = postTestCommand(request, response);
+    private async postTest(request: express.Request, response: express.Response): Promise<void> {
+        const id: string  = await postTestCommand(request, response);
         response.status(200).send(id);
     }
 }
