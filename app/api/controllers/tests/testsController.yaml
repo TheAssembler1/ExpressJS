@@ -2,16 +2,25 @@ definitions:
   #--GetTestsDto--
   GetTestsDto:
     properties:
-      id:
+      _id:
         type: string
       message:
         type: string
+      __v:
+        type: number
     required:
-      - id
+      - _id
       - message
+      - __v
     example:
-      id: 1
+      _id: 1
       message: "GetTestsDto"
+      __v: 0
+  #--AllTestsDto--
+  AllTestsDto:
+    type: array
+    items:
+      $ref: "#/definitions/GetTestsDto"
   #--PostTestsDto--
   PostTestsDto:
     properties:
@@ -47,17 +56,17 @@ responses:
     description: Ok
 
 paths:
-  /api/tests/{Id}:
-    #--get /api/tests/:id--
+  /api/tests/{_id}:
+    #--get /api/tests/:_id--
     get:
-      description: Returns Test based on Id
-      summary: Get Test by Id
+      description: Returns Test based on _id
+      summary: Get Test by _id
       produces:
         - application/json
       parameters:
-        - name: Id
+        - name: _id
           in: path
-          description: Get Id of Test
+          description: Get _id of Test
           required: true
           type: string
       responses:
@@ -71,16 +80,16 @@ paths:
           schema:
             description: Error
             $ref: "#/responses/GeneralError"
-    #--put /api/tests/:id--
+    #--put /api/tests/:_id--
     put:
-      description: Updates Test based on id
-      summary: Update Test by id
+      description: Updates Test based on _id
+      summary: Update Test by _id
       produces:
         - application/json
       parameters:
-        - name: Id
+        - name: _id
           in: path
-          description: Id of Test
+          description: _id of Test
           required: true
           type: string
         - name: Test
@@ -98,16 +107,16 @@ paths:
           schema:
             description: Error
             $ref: "#/responses/GeneralError"
-    #--put /api/tests/:id--
+    #--put /api/tests/:_id--
     delete:
-      description: Deletes Test based on id
-      summary: Deletes Test by id
+      description: Deletes Test based on _id
+      summary: Deletes Test by _id
       produces:
         - application/json
       parameters:
-        - name: Id
+        - name: _id
           in: path
-          description: Id of Test
+          description: _id of Test
           required: true
           type: string
       responses:
@@ -136,6 +145,20 @@ paths:
       responses:
         "200":
           $ref: "#/responses/Ok"
+        default:
+          schema:
+            description: Error
+            $ref: "#/responses/GeneralError"    
+    #--get /api/tests/:_id--
+    get:
+      description: Returns all Tests
+      summary: Get all Tests
+      produces:
+        - application/json
+      responses:
+        "200":
+          schema:
+            $ref: "#/definitions/AllTestsDto"
         default:
           schema:
             description: Error
