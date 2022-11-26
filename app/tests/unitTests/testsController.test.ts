@@ -3,7 +3,13 @@ import App from '../../app';
 import dotenv from 'dotenv';
 import express from 'express';
 
-describe('TestsController', () => {
+describe('ExampleTest', () => {
+    test('exampleTest', () => {
+        expect(1).toBe(1);
+    });
+});
+
+//describe('TestsController', () => {
     /*let app: express.Application;
 
     beforeAll(() => {
@@ -18,4 +24,4 @@ describe('TestsController', () => {
         expect(response.header['content-type']).toBe('application/json; charset=utf-8');
         expect(JSON.parse(response.text).id).toEqual('1');
     });*/
-});
+//});
