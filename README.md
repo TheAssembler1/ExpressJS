@@ -11,3 +11,8 @@ This is a repository for back-end testing and prototyping
 
 # Github
 https://github.com/TheAssembler1/ExpressJS
+
+# TODO
+1. Secure the API
+2. Write tests for everything 
+3. Maybe implement authorization
