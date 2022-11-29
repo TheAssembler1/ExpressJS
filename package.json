@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node app/server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q app/server.js\" ",
-    "test": "jest --verbose --detectOpenHandles app/tests "
+    "dev": "concurrently \"node --watch\" \"nodemon -q app/server.js\" ",
+    "test": "jest --verbose --detectOpenHandles app/tests"
   },
   "keywords": [],
   "author": "",
