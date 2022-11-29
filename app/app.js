@@ -3,39 +3,33 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import mongoose from 'mongoose';
-import controller from './api/controllers/controller';
-import testsController from './api/controllers/tests/testsController';
+import testsController from './api/controllers/tests/testsController.js';
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerDefinition from '../swagger.json' assert {type: 'json'};
 
 class App {
-  public app: express.Application;
   // NOTE:: this is a list of all controllers
-  private controllerList: controller[] = [
+  controllerList = [
     new testsController(),
   ];
 
   // NOTE: Seperate the core creation of the app for testing
-  public constructor(isTestable: boolean) {
+  constructor() {
     this.app = express();
     this.initializeMiddlewares();
     this.initializeControllers();
-
-    if (!isTestable) {
-      this.initializeMongoose();
-      this.initializeSwagger();
-    }
+    this.initializeMongoose();
+    this.initializeSwagger();
   }
 
-  private initializeMongoose() {
+  initializeMongoose() {
     mongoose.connect(String(process.env.DB_URL));
     const mongooseConnection = mongoose.connection;
 
     mongooseConnection.on('error', console.error.bind(console, 'MongoDB connection error:'));
   }
 
-  private initializeSwagger(): void {
-    const swaggerJSDoc: any = require('swagger-jsdoc');
-    const swaggerDefinition: any = require('../swagger.json');
-
+  initializeSwagger() {
     const options = {
       swaggerDefinition,
       apis: ['app/api/controllers/tests/*.yaml'],
@@ -50,17 +44,17 @@ class App {
     );
   }
 
-  private initializeMiddlewares(): void {
+  initializeMiddlewares(){
     this.app.use(bodyParser.json());
   }
 
-  private initializeControllers(): void {
-    this.controllerList.forEach((controller: controller) => {
-      this.app.use('/', controller.router);
+  initializeControllers(){
+    this.controllerList.forEach((controller) => {
+      this.app.use(`/`, controller.router);
     });
   }
 
-  public listen(): void {
+  listen(){
     this.app.listen(Number(process.env.PORT), () => {
       console.log(`App listening at ${String(process.env.APP_URL)}:${Number(process.env.PORT)}`);
     });
