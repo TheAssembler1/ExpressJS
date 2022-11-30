@@ -15,3 +15,4 @@ https://github.com/TheAssembler1/ExpressJS
 1. Secure the API
 2. Write tests for everything 
 3. Maybe implement authorization
+4. Write CD
