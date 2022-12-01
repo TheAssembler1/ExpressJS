@@ -1,24 +1,13 @@
 const dotenv = require('dotenv');
 const request = require('supertest');
-const { app, listen, initializeMiddlewares, initializeControllers } = require('../../app.js');
-
-describe('ExampleTest', () => {
-    test('exampleTest', () => {
-        expect(1).toBe(1);
-    });
-});
+const { app, initializeMiddlewares, initializeControllers } = require('../../app.js');
 
 describe('TestsController', () => {
     beforeAll(() => {
+        // NOTE: initializing the environtment
         dotenv.config();
         
-    });
-
-    test('get api/tests', async () => {
-        initializeMiddlewares(app);
-        initializeControllers(app);
-
-        jest.mock('../../application/handlers/tests/requests/getAllTestsRequest.js', () => {
+        jest.mock('../../application/handlers/tests/requests/getTestsRequest.js', () => {
             return async () => {
                 return {
                     "_id": "1",
@@ -28,8 +17,15 @@ describe('TestsController', () => {
             };
         });
         
-        const getAllTestsRequest = require('../../application/handlers/tests/requests/getAllTestsRequest.js');
-        const response = await request(app).get('/api/tests');
+        const getTestsRequest = require('../../application/handlers/tests/requests/getTestsRequest.js');
+
+        // NOTE: initializing the application
+        initializeMiddlewares(app);
+        initializeControllers(app);
+    });
+
+    test('get api/tests', async () => {
+        const response = await request(app).get('/api/tests/1');
 
         expect(response.statusCode).toBe(200);
         expect(response.header['content-type']).toBe('application/json; charset=utf-8');

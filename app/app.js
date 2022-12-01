@@ -33,8 +33,8 @@ exports.initializeMiddlewares = (app) => {
 }
 
 exports.initializeControllers = (app) => {
-  const TestsController = require('./api/controllers/tests/testsController.js');
-
+  const TestsController = require('./api/controllers/tests/testsController.js')
+  
   const controllerList = [
     new TestsController()
   ];
