@@ -1,7 +1,7 @@
-import express from 'express';
-import testsModel from '../../../../persistance/testsSchema.js';
+const express = require('express');
+const testsModel = require('../../../../persistance/testsSchema.js');
 
-async function postTestCommand(request, response){
+exports.module = async (request, response) => {
     const requestBody = request.body;
     const model = new testsModel(requestBody);
 
@@ -11,5 +11,3 @@ async function postTestCommand(request, response){
 
     return model.id || '';
 }
-
-export default postTestCommand;

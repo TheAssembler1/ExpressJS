@@ -1,10 +1,8 @@
-import express from 'express';
-import testsModel from '../../../../persistance/testsSchema.js';
+const express = require('express');
+const testsModel = require('../../../../persistance/testsSchema.js');
 
-async function getAllTestsRequest(request, response){
+module.exports = async (request, response) => {
     const result = await testsModel.find();
 
     return result;
 }
-
-export default getAllTestsRequest;

@@ -1,12 +1,10 @@
-import express from 'express';
-import testsModel from '../../../../persistance/testsSchema.js';
+const express = require('express');
+const testsModel = require('../../../../persistance/testsSchema.js');
 
 
-async function putTestsCommand(request, response){
+module.exports = async (request, response) => {
     const id = request.params._id;
     const requestBody = request.body;
 
     await testsModel.findByIdAndUpdate(id, requestBody);
 }
-
-export default putTestsCommand;

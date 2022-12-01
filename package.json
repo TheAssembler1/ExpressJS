@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node app/server.js",
     "dev": "concurrently \"node --watch\" \"nodemon -q app/server.js\" ",
