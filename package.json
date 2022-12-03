@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node app/server.js",
-    "dev": "concurrently \"node --watch\" \"nodemon -q app/server.js\" ",
+    "dev": "concurrently \"node\" \"nodemon -q app/server.js\" ",
     "test": "jest --verbose --detectOpenHandles app/tests"
   },
   "keywords": [],
