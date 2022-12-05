@@ -55,12 +55,6 @@ describe('TestsController', () => {
                 ]
             };
         });
-        
-        const getTestsRequest = require('../../application/handlers/tests/requests/getTestsRequest.js');
-        const putTestsRequest = require('../../application/handlers/tests/commands/putTestsCommand.js');
-        const deleteTestCommand = require('../../application/handlers/tests/commands/deleteTestsCommand.js');
-        const postTestCommand = require('../../application/handlers/tests/commands/postTestsCommand.js');
-        const getAllTestsRequest = require('../../application/handlers/tests/requests/getAllTestsRequest.js');
 
         // NOTE: initializing the application
         initializeMiddlewares(app);
