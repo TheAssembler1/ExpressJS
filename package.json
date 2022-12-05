@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app/server.js",
     "dev": "concurrently \"node\" \"nodemon -q app/server.js\" ",
-    "test": "jest --verbose --detectOpenHandles app/tests"
+    "test": "jest --verbose --detectOpenHandles app/tests",
+    "test-coverage": "npx jest --coverage"
   },
   "keywords": [],
   "author": "",
