@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node app/server.js",
+    "start-debug": "set DEBUG=express:* & node app/server.js",
     "dev": "concurrently \"node\" \"nodemon -q app/server.js\" ",
     "test": "jest --verbose --detectOpenHandles app/tests",
     "test-coverage": "npx jest --coverage"
